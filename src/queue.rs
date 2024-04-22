@@ -1,8 +1,8 @@
 //! ##Queue
-//! 
+//!
 //! Represents a queue of items in list
 //! which allows you to handle each in order
-//! 
+//!
 
 pub struct Queue<T> {
     items: Vec<T>,
@@ -33,10 +33,18 @@ impl<T> Queue<T> {
     pub fn pop(&mut self) -> Option<T> {
         self.items.pop()
     }
+
+    /// Gets first item
+    pub fn first(&self) -> Option<&T> {
+        self.items.get(self.len() - 1)
+    }
 }
 
 // Implementing Iter on Queue
-impl<T> Iterator for Queue<T> where T: Ord {
+impl<T> Iterator for Queue<T>
+where
+    T: Ord,
+{
     type Item = T;
 
     /// Gets first item in iter

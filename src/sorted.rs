@@ -52,6 +52,11 @@ where
     pub fn pop(&mut self) -> Option<T> {
         self.items.pop()
     }
+
+    /// Gets first item
+    pub fn first(&self) -> Option<&T> {
+        self.items.get(self.len() - 1)
+    }
 }
 
 // Implementing Iter on Queue
