@@ -1,1 +1,1 @@
-## QueueType
+## QueuedType

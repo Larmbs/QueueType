@@ -1,5 +1,5 @@
 [package]
-name = "QueueType"
+name = "queued_rust"
 version = "0.1.0"
 edition = "2021"
 description = "Implementation of queue type for better privacy managment"
