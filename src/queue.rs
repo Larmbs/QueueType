@@ -41,10 +41,7 @@ impl<T> Queue<T> {
 }
 
 // Implementing Iter on Queue
-impl<T> Iterator for Queue<T>
-where
-    T: Ord,
-{
+impl<T> Iterator for Queue<T> {
     type Item = T;
 
     /// Gets first item in iter
