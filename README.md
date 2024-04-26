@@ -61,10 +61,36 @@ fn main() {
 }
 ```
 
+## Weighted
+A simple wrapper type that allows you to stick a weight number next to any item to easily use the sorted type as it needs the type to implement ordering traits
+
+Example 
+```Rust
+use queued_rust::{SortedQueue, QueueType, Weighted};
+
+fn main() {
+    // Creating a sorted queue with weights
+    let mut sorted_weighted_queue = SortedQueue::new();
+
+    // Add items to the sorted queue
+    sorted_weighted_queue.add(Weighted::new("hello", 10));
+    sorted_weighted_queue.add(Weighted::new("this queue", 4523));
+    sorted_weighted_queue.add(Weighted::new("is harder to order", 12412));
+    sorted_weighted_queue.add(Weighted::new("properly", 14));
+    sorted_weighted_queue.add(Weighted::new("so it might be better", 214));
+    sorted_weighted_queue.add(Weighted::new("to add a weight system", 41444));
+
+
+    println!("Printing items from sorted queue");
+    for wrapper in sorted_weighted_queue {
+        println!("{}", wrapper.into_item())
+    }
+}
+```
+
 ## Future Plans
 
 New objects
 - [] Add sized constraint to queues to force size
 - [] Create a queue load balancer
 - [] Allow an interface for queues with channels 
-- [] Add weighted struct that implements ordering to 

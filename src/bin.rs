@@ -1,4 +1,4 @@
-use queued_rust::{QueueType, Queue, SortedQueue};
+use queued_rust::{QueueType, Queue, SortedQueue, Weighted};
 
 fn main() {
     // Creating a regular queue
@@ -32,6 +32,23 @@ fn main() {
     println!("Printing items from sorted queue");
     for item in sorted_queue {
         println!("{}", item)
+    }
+
+    // Creating a sorted queue with weights
+    let mut sorted_weighted_queue = SortedQueue::new();
+
+    // Add items to the sorted queue
+    sorted_weighted_queue.add(Weighted::new("hello", 10));
+    sorted_weighted_queue.add(Weighted::new("this queue", 4523));
+    sorted_weighted_queue.add(Weighted::new("is harder to order", 12412));
+    sorted_weighted_queue.add(Weighted::new("properly", 14));
+    sorted_weighted_queue.add(Weighted::new("so it might be better", 214));
+    sorted_weighted_queue.add(Weighted::new("to add a weight system", 41444));
+
+
+    println!("Printing items from sorted queue");
+    for wrapper in sorted_weighted_queue {
+        println!("{}", wrapper.into_item())
     }
 }
 
