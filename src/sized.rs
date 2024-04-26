@@ -38,7 +38,7 @@ impl<T> SizedQueueType<T> for SizedQueue<T> {
     }
 
     fn first(&self) -> Option<&T> {
-        self.items.get(self.len() - 1)
+        self.items.last()
     }
 }
 

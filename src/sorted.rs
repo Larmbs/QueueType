@@ -57,7 +57,7 @@ where
 
     /// Gets first item
     fn first(&self) -> Option<&T> {
-        self.items.get(self.len() - 1)
+        self.items.last()
     }
 }
 

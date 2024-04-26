@@ -37,7 +37,7 @@ impl<T> QueueType<T> for Queue<T> {
 
     /// Gets first item
     fn first(&self) -> Option<&T> {
-        self.items.get(self.len() - 1)
+        self.items.last()
     }
 }
 
