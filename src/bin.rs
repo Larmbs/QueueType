@@ -1,6 +1,3 @@
-## QueuedType
-
-```Rust
 use queued_rust::{QueueType, Queue, SortedQueue};
 
 fn main() {
@@ -33,5 +30,3 @@ fn main() {
         println!("{}", item)
     }
 }
-
-```

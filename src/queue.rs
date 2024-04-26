@@ -3,39 +3,40 @@
 //! Represents a queue of items in list
 //! which allows you to handle each in order
 //!
+use super::queued_type::QueueType;
 
 pub struct Queue<T> {
     items: Vec<T>,
 }
 
-impl<T> Queue<T> {
+impl<T> QueueType<T> for Queue<T> {
     /// Create a new queue object
-    pub fn new() -> Self {
+    fn new() -> Self {
         Self { items: vec![] }
     }
 
     /// Removes all elements in queue
-    pub fn clear(&mut self) {
+    fn clear(&mut self) {
         self.items = vec![];
     }
 
     /// Gets length of queue
-    pub fn len(&self) -> usize {
+    fn len(&self) -> usize {
         self.items.len()
     }
 
     /// Insert an item into the top of the queue
-    pub fn add(&mut self, item: T) {
+    fn add(&mut self, item: T) {
         self.items.insert(0, item);
     }
 
     /// Take out an item from the queue
-    pub fn pop(&mut self) -> Option<T> {
+    fn pop(&mut self) -> Option<T> {
         self.items.pop()
     }
 
     /// Gets first item
-    pub fn first(&self) -> Option<&T> {
+    fn first(&self) -> Option<&T> {
         self.items.get(self.len() - 1)
     }
 }

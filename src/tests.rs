@@ -1,3 +1,5 @@
+use crate::queued_type::QueueType;
+
 use super::*;
 
 #[test]

@@ -3,6 +3,8 @@
 //! Collection type that allows insertion into
 //! queue but it is sorted for better indexing
 //! 
+use super::queued_type::QueueType;
+
 
 pub struct SortedQueue<T>
 where
@@ -11,27 +13,27 @@ where
     items: Vec<T>,
 }
 
-impl<T> SortedQueue<T>
+impl<T> QueueType<T> for SortedQueue<T>
 where
     T: Ord,
 {
     /// Creates a new queue
-    pub fn new() -> Self {
+    fn new() -> Self {
         Self { items: vec![] }
     }
 
     /// Removes all elements in queue
-    pub fn clear(&mut self) {
+    fn clear(&mut self) {
         self.items = vec![];
     }
 
     /// Returns length of queue
-    pub fn len(&self) -> usize {
+    fn len(&self) -> usize {
         self.items.len()
     }
 
     /// Add a items into the sorted queue
-    pub fn add(&mut self, item: T) {
+    fn add(&mut self, item: T) {
         let mut low = 0;
         let mut high = self.len();
 
@@ -49,12 +51,12 @@ where
     }
 
     /// Take out an item from the queue
-    pub fn pop(&mut self) -> Option<T> {
+    fn pop(&mut self) -> Option<T> {
         self.items.pop()
     }
 
     /// Gets first item
-    pub fn first(&self) -> Option<&T> {
+    fn first(&self) -> Option<&T> {
         self.items.get(self.len() - 1)
     }
 }
