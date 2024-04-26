@@ -68,3 +68,11 @@ fn main() {
     }
 }
 ```
+
+## Future Plans
+
+New objects
+- [] Add sized constraint to queues to force size
+- [] Create a queue load balancer
+- [] Allow an interface for queues with channels 
+- [] Add weighted struct that implements ordering to 
