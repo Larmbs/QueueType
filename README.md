@@ -5,6 +5,7 @@ Welcome to the documentation for Queued Rust, a crate designed to provide queue 
 ## Features
  - [] Queue: A basic FIFO (First-In, First-Out) queue.
  - [] SortedQueue: A queue that maintains elements in sorted order.
+ - [] Weighted: Wrapper type to add ordering to any object.
 
 ## Types
 
@@ -65,7 +66,7 @@ fn main() {
 A simple wrapper type that allows you to stick a weight number next to any item to easily use the sorted type as it needs the type to implement ordering traits
 
 Example 
-```Rust
+```rust
 use queued_rust::{SortedQueue, QueueType, Weighted};
 
 fn main() {
