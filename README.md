@@ -6,15 +6,7 @@ Welcome to the documentation for Queued Rust, a crate designed to provide queue 
  - [] Queue: A basic FIFO (First-In, First-Out) queue.
  - [] SortedQueue: A queue that maintains elements in sorted order.
 
-## Usage
-To use Queued Rust in your project, simply add it to your Cargo.toml file:
-
-```toml
-[dependencies]
-queued_rust = "0.1.0"
-```
-
-## Structs
+## Types
 
 ### Queue
 A basic FIFO (First-In, First-Out) queue.
