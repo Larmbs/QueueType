@@ -1,6 +1,6 @@
 ## QueuedType
 
-```Rust
+```rust
 use queued_rust::{QueueType, Queue, SortedQueue};
 
 fn main() {
