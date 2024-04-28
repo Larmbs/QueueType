@@ -1,39 +1,48 @@
-//! ## SortedQueue
-//! 
-//! Collection type that allows insertion into
-//! queue but it is sorted for better indexing
-//! 
-use super::queued_type::QueueType;
+use super::QueueError;
 
-
+#[derive(Clone, Debug)]
 pub struct SortedQueue<T>
 where
     T: Ord,
 {
     items: Vec<T>,
+    max_size: Option<usize>,
 }
 
-impl<T> QueueType<T> for SortedQueue<T>
+impl<T> SortedQueue<T>
 where
     T: Ord,
 {
-    /// Creates a new queue
-    fn new() -> Self {
-        Self { items: vec![] }
+    /// Creates a queue object with no max size
+    pub fn new() -> Self {
+        Self { items: vec![], max_size: None }
+    }
+
+    /// Creates a queue object with a max size
+    pub fn new_sized(size: usize) -> Self {
+        Self { items: vec![], max_size: Some(size) }
     }
 
     /// Removes all elements in queue
-    fn clear(&mut self) {
+    pub fn clear(&mut self) {
         self.items = vec![];
     }
 
     /// Returns length of queue
-    fn len(&self) -> usize {
+    pub fn len(&self) -> usize {
         self.items.len()
     }
 
+    /// Gets length of queue
+    pub fn is_full(&self) -> bool {
+        if let Some(max_size) = self.max_size {
+            return self.len() >= max_size;
+        }
+        false
+    }
+
     /// Add a items into the sorted queue
-    fn add(&mut self, item: T) {
+    pub fn add(&mut self, item: T) {
         let mut low = 0;
         let mut high = self.len();
 
@@ -50,13 +59,21 @@ where
         self.items.insert(low, item);
     }
 
+    pub fn try_add(&mut self, item: T) -> Result<(), QueueError> {
+        // Check if queue is full
+        if self.is_full() {return  Err(QueueError::Full);}
+
+        self.add(item);
+        Ok(())
+    }
+
     /// Take out an item from the queue
-    fn pop(&mut self) -> Option<T> {
+    pub fn pop(&mut self) -> Option<T> {
         self.items.pop()
     }
 
     /// Gets first item
-    fn first(&self) -> Option<&T> {
+    pub fn first(&self) -> Option<&T> {
         self.items.last()
     }
 }

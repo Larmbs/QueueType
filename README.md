@@ -14,10 +14,11 @@ A basic FIFO (First-In, First-Out) queue.
 
 Example
 ```rust
-use queued_rust::{Queue, QueueType};
+use queued_rust::{Queue};
 
 fn main() {
     // Creating a regular queue
+    println!("Testing Out Queues\n");
     let mut queue = Queue::new();
 
     // Add items to the regular queue
@@ -31,8 +32,9 @@ fn main() {
     println!("Printing items from regular queue");
     // Notice how the items are printed in order of add 4, 1, 3, 5, 2
     while let Some(item) = queue.next() {
-        println!("{}. items left: {}", item, queue.len());
+        println!("Remaining: {} Item: {}", queue.len(), item);
     }
+
 }
 ```
 
@@ -41,10 +43,11 @@ A queue that maintains elements in sorted order.
 
 Example
 ```rust
-use queued_rust::{SortedQueue, QueueType};
+use queued_rust::{SortedQueue};
 
 fn main() {
     // Creating a sorted queue
+    println!("\n\nTesting Out Sorted Queues\n");
     let mut sorted_queue = SortedQueue::new();
 
     // Add items to the sorted queue
@@ -56,8 +59,8 @@ fn main() {
 
     // Notice how the items are printed in order 1, 2, 3, 4, 5
     println!("Printing items from sorted queue");
-    for item in sorted_queue {
-        println!("{}", item)
+    while let Some(item) = sorted_queue.next() {
+        println!("Remaining: {} Item: {}", sorted_queue.len(), item);
     }
 }
 ```
@@ -67,10 +70,11 @@ A simple wrapper type that allows you to stick a weight number next to any item 
 
 Example 
 ```rust
-use queued_rust::{SortedQueue, QueueType, Weighted};
+use queued_rust::{SortedQueue, Weighted};
 
 fn main() {
     // Creating a sorted queue with weights
+    println!("\n\nTesting Out Sorted Weighted Queues\n");
     let mut sorted_weighted_queue = SortedQueue::new();
 
     // Add items to the sorted queue
@@ -83,8 +87,44 @@ fn main() {
 
 
     println!("Printing items from sorted queue");
-    for wrapper in sorted_weighted_queue {
-        println!("{}", wrapper.into_item())
+    while let Some(item) = sorted_weighted_queue.next() {
+        println!("Remaining: {} Item: {}", sorted_weighted_queue.len(), item.into_item());
+    }
+}
+```
+
+### Sized Queue
+This is a constraint you can add onto any queue that forces it to be a specific size. 
+Constructing a sized queue just means using the new_sized method to create a sized queue object.
+Now because just adding an item to the queue can throw an error its best practice when using a 
+sized queue to use the try_add method. 
+
+If it fails to insert an item it returns a QueueError::Full
+
+```rust
+use queued_rust::{Queue};
+
+fn main() {
+    // Creating a sized queue
+    println!("\n\nTesting Out Sized Queues\n");
+    let mut sized_queue = Queue::new_sized(2); // Queue with max size of two items
+
+    // These two will work good
+    if let Err(error) = sized_queue.try_add(1) {
+        eprintln!("{}", error);
+    }
+    if let Err(error) = sized_queue.try_add(2) {
+        eprintln!("{}", error);
+    }
+
+    // This will fail
+    if let Err(error) = sized_queue.try_add(3) {
+        eprintln!("{}", error);
+    }
+
+    println!("Printing items from sized queue");
+    for item in sized_queue {
+        println!("{}", item);
     }
 }
 ```
@@ -92,6 +132,5 @@ fn main() {
 ## Future Plans
 
 New objects
-- [] Add sized constraint to queues to force size
 - [] Create a queue load balancer
 - [] Allow an interface for queues with channels 

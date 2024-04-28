@@ -1,15 +1,9 @@
-mod queue;
-mod sorted;
-mod sized;
-mod queued_type;
 mod weighted;
-mod balancer;
+mod queues;
 
-pub use queue::Queue; // Queue that does not have max size
-pub use sorted::SortedQueue;
-pub use queued_type::QueueType;
-pub use sized::SizedQueue; // Queue that has a max size
-pub use weighted::Weighted; // Implements ordering can be used with sorted
+pub use queues::{SortedQueue, Queue};  // Module with array of queue types
+pub use weighted::Weighted;            // Implements ordering can be used with sorted
+pub use queues::QueueError;            // Errors attributed to queues
 
 #[cfg(test)]
 mod tests;

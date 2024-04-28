@@ -1,6 +1,6 @@
 [package]
 name = "queued_rust"
-version = "0.5.3"
+version = "0.6.0"
 edition = "2021"
 description = "Implementation of queue type for better privacy managment"
 license = "MIT"
@@ -16,3 +16,4 @@ path = "src/bin.rs"
 
 [dependencies]
 snafu = "0.8.2"
+thiserror = "1.0.59"
