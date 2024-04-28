@@ -24,7 +24,7 @@ use queued_rust::{Queue};
 fn main() {
     // Creating a regular queue
     println!("Testing Out Queues\n");
-    let mut queue = Queue::new();
+    let mut queue = Queue::new(false);
 
     // Add items to the regular queue
     queue.add(4);
@@ -54,7 +54,7 @@ use queued_rust::{SortedQueue};
 fn main() {
     // Creating a sorted queue
     println!("\n\nTesting Out Sorted Queues\n");
-    let mut sorted_queue = SortedQueue::new();
+    let mut sorted_queue = SortedQueue::new(true);
 
     // Add items to the sorted queue
     sorted_queue.add(4);
@@ -81,7 +81,7 @@ use queued_rust::{SortedQueue, Weighted};
 fn main() {
     // Creating a sorted queue with weights
     println!("\n\nTesting Out Sorted Weighted Queues\n");
-    let mut sorted_weighted_queue = SortedQueue::new();
+    let mut sorted_weighted_queue = SortedQueue::new(false);
 
     // Add items to the sorted queue
     sorted_weighted_queue.add(Weighted::new("hello", 10));
@@ -113,7 +113,7 @@ use queued_rust::{Queue};
 fn main() {
     // Creating a sized queue
     println!("\n\nTesting Out Sized Queues\n");
-    let mut sized_queue = Queue::new_sized(2); // Queue with max size of two items
+    let mut sized_queue = Queue::new_sized(2, true); // Queue with max size of two items
 
     // These two will work good
     if let Err(error) = sized_queue.try_add(1) {
