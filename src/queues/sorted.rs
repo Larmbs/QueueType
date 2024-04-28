@@ -8,6 +8,7 @@ where
 {
     items: Vec<T>,
     max_size: Option<usize>,
+    reverse: bool,
 }
 
 impl<T> SortedQueue<T>
@@ -15,12 +16,12 @@ where
     T: Ord,
 {
     /// Creates a new `SortedQueue` with no maximum size.
-    pub fn new() -> Self {
-        Self { items: vec![], max_size: None }
+    pub fn new(reverse: bool) -> Self {
+        Self { items: vec![], max_size: None, reverse }
     }
     /// Creates a new `SortedQueue` with a specified maximum size.
-    pub fn new_sized(size: usize) -> Self {
-        Self { items: vec![], max_size: Some(size) }
+    pub fn new_sized(size: usize, reverse: bool) -> Self {
+        Self { items: vec![], max_size: Some(size), reverse }
     }
 
     /// Removes all elements from the queue.
@@ -38,6 +39,10 @@ where
         }
         false
     }
+    /// Returns queue reversed state
+    pub fn is_reversed(&self) -> bool {
+        self.reverse
+    }
 
     /// Adds an item to the sorted queue.
     ///
@@ -49,7 +54,8 @@ where
         while low < high {
             let mid = (low + high) / 2;
 
-            if self.items[mid] > item { // Flip to switch order
+
+            if (self.items[mid] > item)^self.reverse { // Flip to switch order
                 low = mid + 1;
             } else {
                 high = mid;

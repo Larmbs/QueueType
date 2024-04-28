@@ -2,7 +2,7 @@ use super::*;
 
 #[test]
 fn it_works() {
-    let mut queue = Queue::new();
+    let mut queue = Queue::new(false);
     queue.add(10);
     queue.add(5);
 
@@ -24,7 +24,7 @@ fn it_works() {
 
 #[test]
 fn sorted_queue_test() {
-    let mut sorted_queue = SortedQueue::new();
+    let mut sorted_queue = SortedQueue::new(false);
     sorted_queue.add(5);
     sorted_queue.add(6);
 

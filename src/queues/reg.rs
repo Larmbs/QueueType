@@ -3,17 +3,18 @@ use super::QueueError;
 #[derive(Clone, Debug)]
 pub struct Queue<T> {
     items: Vec<T>,
-    max_size: Option<usize>
+    max_size: Option<usize>,
+    reverse: bool,
 }
 
 impl<T> Queue<T> {
     /// Creates a new `Queue` with no maximum size.
-    pub fn new() -> Self {
-        Self { items: vec![], max_size: None }
+    pub fn new(reverse: bool) -> Self {
+        Self { items: vec![], max_size: None, reverse }
     }
     /// Creates a new `Queue` with a specified maximum size.
-    pub fn new_sized(size: usize) -> Self {
-        Self { items: vec![], max_size: Some(size) }
+    pub fn new_sized(size: usize, reverse: bool) -> Self {
+        Self { items: vec![], max_size: Some(size), reverse }
     }
 
     /// Removes all elements in queue
@@ -31,10 +32,18 @@ impl<T> Queue<T> {
         }
         false
     }
+    /// Returns queue reversed state
+    pub fn is_reversed(&self) -> bool {
+        self.reverse
+    }
 
     /// Adds an item to the queue.
     pub fn add(&mut self, item: T) {
-        self.items.insert(0, item);
+        if self.reverse {
+            self.items.push(item);
+        } else {
+            self.items.insert(0, item);
+        }
     }
 
     /// Attempts to add an item to the queue.

@@ -1,6 +1,6 @@
 [package]
 name = "queued_rust"
-version = "0.6.1"
+version = "0.7.0"
 edition = "2021"
 description = "Implementation of queue type for better privacy managment"
 license = "MIT"
