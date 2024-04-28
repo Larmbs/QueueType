@@ -1,9 +1,12 @@
 [package]
 name = "queued_rust"
-version = "0.7.2"
+version = "0.7.3"
 edition = "2021"
-description = "Implementation of queue type for better privacy managment"
+description = "Simple implementation of a queue type for better privacy managment and data orginization"
 license = "MIT"
+license-file = "LICENSE"
+repository = "https://github.com/Larmbs/QueueType"
+readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
