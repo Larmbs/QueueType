@@ -1,19 +1,11 @@
 [package]
 name = "queued_rust"
-version = "0.6.0"
+version = "0.6.1"
 edition = "2021"
 description = "Implementation of queue type for better privacy managment"
 license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-[lib]
-name = "queued_rust"
-path = "src/lib.rs"
-
-[[bin]]
-name = "mybin"
-path = "src/bin.rs"
 
 [dependencies]
-snafu = "0.8.2"
 thiserror = "1.0.59"

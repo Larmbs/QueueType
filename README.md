@@ -3,9 +3,11 @@
 Welcome to the documentation for Queued Rust, a crate designed to provide queue data structures for your Rust projects. This crate offers efficient implementations of both standard queues and sorted queues.
 
 ## Features
- - [] Queue: A basic FIFO (First-In, First-Out) queue.
- - [] SortedQueue: A queue that maintains elements in sorted order.
- - [] Weighted: Wrapper type to add ordering to any object.
+All queues implement a max_size feature to better constraint them.
+
+ - Queue: A basic FIFO (First-In, First-Out) queue.
+ - SortedQueue: A queue that maintains elements in sorted order.
+ - Weighted: Wrapper type to add ordering to any object.
 
 ## Types
 
@@ -40,6 +42,7 @@ fn main() {
 
 ### SortedQueue
 A queue that maintains elements in sorted order.
+Elements must implement ordering traits.
 
 Example
 ```rust
@@ -99,7 +102,7 @@ Constructing a sized queue just means using the new_sized method to create a siz
 Now because just adding an item to the queue can throw an error its best practice when using a 
 sized queue to use the try_add method. 
 
-If it fails to insert an item it returns a QueueError::Full
+If it fails to insert an item it returns a QueueError::Full.
 
 ```rust
 use queued_rust::{Queue};
@@ -130,7 +133,5 @@ fn main() {
 ```
 
 ## Future Plans
-
-New objects
-- [] Create a queue load balancer
-- [] Allow an interface for queues with channels 
+- Create a queue load balancer
+- Allow an interface for queues with channels 
