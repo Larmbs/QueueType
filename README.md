@@ -12,6 +12,8 @@ And turn a priority queue to lowest priority queue.
  - SortedQueue: A queue that maintains elements in sorted order.
  - Weighted: Wrapper type to add ordering to any object.
 
+ Additionally there are helper functions to help do common tasks like combining queues and turning them into different forms.
+
 ## Types
 
 ### Queue

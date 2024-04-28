@@ -41,3 +41,43 @@ fn sorted_queue_test() {
     
     assert!(true);
 }
+
+#[test]
+fn test_reversal() {
+    let mut queue = Queue::new(true);
+    queue.add(10);
+    queue.add(12);
+
+    assert_eq!(queue.pop(), Some(12));
+
+    let mut sorted = SortedQueue::new(true);
+    sorted.add(10);
+    sorted.add(18);
+    sorted.add(8);
+
+    assert_eq!(sorted.pop(), Some(18));
+
+    let mut queue = Queue::new(false);
+    queue.add(10);
+    queue.add(12);
+
+    assert_eq!(queue.pop(), Some(10));
+
+    let mut sorted = SortedQueue::new(false);
+    sorted.add(10);
+    sorted.add(4);    
+    sorted.add(19);
+
+    assert_eq!(sorted.pop(), Some(4));
+}
+
+#[test]
+fn test_sized() {
+    let mut queue = Queue::new_sized(1, false);
+    assert_eq!(queue.try_add(10), Ok(()));
+    assert_eq!(queue.try_add(10), Err(QueueError::Full));
+
+    let mut sorted = SortedQueue::new_sized(1, false);
+    assert_eq!(sorted.try_add(10), Ok(()));
+    assert_eq!(sorted.try_add(10), Err(QueueError::Full));
+}
